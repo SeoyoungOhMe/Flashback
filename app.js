@@ -14,7 +14,7 @@ const db = new pg.Client({
     port: 5432,
 })
   
-db.connect()
+db.connect();
 
 app.set('view engine', 'ejs')
 app.set('views', './views') // 화면 상에 보여지는 걸 어디서 가져올지 지정
@@ -51,12 +51,7 @@ app.get('/', (req, res) => {
 
 app.post('/add-sentence', async (req, res) => {
     // 클라이언트로부터 받은 데이터 예시
-    const sentenceData = {
-        userNo: 1, // 예시 값, 실제로는 클라이언트로부터 받아야 합니다.
-        title: "우연한 만남",
-        author: "투어스",
-        sentence: "첫 만남은 너무 어려워."
-    };
+    const { userno, title, author, sentence } = req.body;
 
     // PostgreSQL 쿼리를 사용해 sentences 테이블에 데이터 추가
     const query = `
@@ -65,7 +60,7 @@ app.post('/add-sentence', async (req, res) => {
     `;
 
     try {
-        await db.query(query, [sentenceData.userNo, sentenceData.title, sentenceData.author, sentenceData.sentence]);
+        await db.query(query, [userno, title, author, sentence]);
         res.send("문장이 성공적으로 추가되었습니다.");
     } catch (err) {
         console.error(err);
