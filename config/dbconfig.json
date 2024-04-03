@@ -1,0 +1,7 @@
+{
+    "user": "postgres",
+    "host": "database-1.cb8gk26msac4.ap-northeast-2.rds.amazonaws.com",
+    "database": "postgres",
+    "password": "flashback",
+    "port": 5432
+}
