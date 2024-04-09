@@ -14,7 +14,7 @@ const db = new pg.Client({
 db.connect();
 
 // DELETE /sentences/{sentence_id} 경로에 대한 처리
-router.delete('/sentences/:sentence_id', async (req, res) => {
+router.delete('/', async (req, res) => { // 원래 : /sentences/:sentence_id
     const sentenceId = parseInt(req.params.sentence_id);
 
     if (!Number.isInteger(sentenceId)) {

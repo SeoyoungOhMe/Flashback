@@ -14,7 +14,7 @@ const db = new pg.Client({
 db.connect();
 
 // GET /sentences 경로에 대한 처리
-router.get('/sentences', async (req, res) => {
+router.get('/', async (req, res) => { // 원래 : /sentences
     // PostgreSQL 쿼리를 사용하여 모든 문장의 목록을 가져옴
     const query = `
         SELECT title, author, sentence

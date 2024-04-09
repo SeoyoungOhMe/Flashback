@@ -25,6 +25,8 @@ app.use(bodyParser.urlencoded({ extended: false })) // bodyparser 사용을 위�
 
 app.use(express.static(__dirname + '/public')) // 정적 파일 제공
 
+app.use(express.json()); // JSON 본문 파싱을 위해 필요
+
 var router = require('./routes/index');
 
 app.use(router);

@@ -14,8 +14,9 @@ const db = new pg.Client({
 db.connect();
 
 // POST /sentences 경로에 대한 처리
-router.post('/sentences', async (req, res) => {
-    const { title, author, sentence } = req.body;
+router.post('/', async (req, res) => { // 원래 : /sentences
+    // const { title, author, sentence } = req.body;
+    const { userno, title, author, sentence } = req.body;
 
     // 입력 값 검증
     if (!author) {
@@ -41,12 +42,13 @@ router.post('/sentences', async (req, res) => {
 
     // PostgreSQL 쿼리를 사용해 sentences 테이블에 데이터 추가
     const query = `
-        INSERT INTO sentences(title, author, sentence)
-        VALUES($1, $2, $3)
+
+        INSERT INTO sentences(userno, title, author, sentence)
+        VALUES($1, $2, $3, $4) // 원래는 3개만 
     `;
 
     try {
-        await db.query(query, [title, author, sentence]);
+        await db.query(query, [userno, title, author, sentence]);
         res.status(200).json({
             success: true,
             message: "문장 등록에 성공했습니다"

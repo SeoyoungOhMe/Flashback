@@ -14,7 +14,7 @@ const db = new pg.Client({
 db.connect();
 
 // GET /sentences/{sentence_id}/preferences 경로에 대한 처리
-router.get('/sentences/:sentence_id/preferences', async (req, res) => {
+router.get('/', async (req, res) => { // 원래 : /sentences/:sentence_id/preferences
     const sentenceNo = parseInt(req.params.sentence_id);
 
     if (!Number.isInteger(sentenceNo)) {

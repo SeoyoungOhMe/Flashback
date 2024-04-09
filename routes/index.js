@@ -35,10 +35,14 @@ router.use('/login', login);
 
 router.use('/logout', logout);
 
-router.use('/sentence/delete', sentence_delete);
-router.use('/sentence/list', sentence_list);
-router.use('/sentence/read', sentence_read);
-router.use('/sentence/write', sentence_write);
+// router.use('/sentence/delete', sentence_delete);
+router.use('/sentences/:sentence_id', sentence_delete);
+// router.use('/sentence/list', sentence_list);
+router.use('/sentence', sentence_list);
+// router.use('/sentence/read', sentence_read);
+router.use('/sentences/:sentence_id/preferences', sentence_read); 
+// router.use('/sentence/write', sentence_write);
+router.use('/sentences', sentence_write);
 
 router.use('/signup', signup);
 
