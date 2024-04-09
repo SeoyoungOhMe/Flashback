@@ -20,7 +20,7 @@ const db = new pg.Client({
 //회원가입 /signup
 router.post('/', async(req, res) => {
     const { nickname, id, password } = req.body;
-
+    
     //nickname, id, passowrd 3개가 중 하나라도 입력하지 않은 경우
     if (!nickname || !id || !password) {
         return res.status(400).json({ success: false, message: '닉네임, 아이디, 비밀번호를 모두 입력해주세요.' });

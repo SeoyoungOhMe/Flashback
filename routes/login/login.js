@@ -54,7 +54,7 @@ router.post('/', async (req, res) => {
       req.session.user = user;
 
       // Return success response with access token
-      res.status(200).json({ success: true, accessToken });
+      res.status(200).json({ success: true, accessToken});
     });
   } catch (error) {
     console.error('Error logging in:', error);

@@ -7,6 +7,19 @@ const pg = require('pg')  // import pg from 'pg' 와 동일 (ES6 모듈 -> Commo
 var session = require('express-session')
 const dbconfig = require('./config/dbconfig.json')
 const bcrypt = require('bcrypt');
+const dotenv = require('dotenv');
+dotenv.config();
+
+const sessionSecret = process.env.SESSION_SECRET;
+
+// Express session middleware setup
+app.use(session({
+  secret: sessionSecret,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 3 * 60 * 60 * 1000 } // 세션의 만료 시간을 3시간으로 설정
+}));
+
 
 const db = new pg.Client({
     user: dbconfig.user,
