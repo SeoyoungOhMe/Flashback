@@ -14,7 +14,7 @@ const db = new pg.Client({
 db.connect();
 
 // DELETE /sentences/{sentence_id} 경로에 대한 처리
-router.delete('/', async (req, res) => { // 원래 : /sentences/:sentence_id
+router.delete('/:sentence_id', async (req, res) => { // 원래 : /sentences/:sentence_id
     const sentenceId = parseInt(req.params.sentence_id);
 
     if (!Number.isInteger(sentenceId)) {
@@ -27,7 +27,7 @@ router.delete('/', async (req, res) => { // 원래 : /sentences/:sentence_id
     // PostgreSQL 쿼리를 사용하여 특정 문장을 삭제
     const query = `
         DELETE FROM sentences
-        WHERE id = $1
+        WHERE sentenceno = $1
     `;
 
     try {

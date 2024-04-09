@@ -36,13 +36,13 @@ router.use('/login', login);
 router.use('/logout', logout);
 
 // router.use('/sentence/delete', sentence_delete);
-router.use('/sentences/:sentence_id', sentence_delete);
+router.use('/sentences', sentence_delete); // 성공
 // router.use('/sentence/list', sentence_list);
-router.use('/sentence', sentence_list);
+router.use('/sentences', sentence_list); // 성공
 // router.use('/sentence/read', sentence_read);
 router.use('/sentences/:sentence_id/preferences', sentence_read); 
 // router.use('/sentence/write', sentence_write);
-router.use('/sentences', sentence_write);
+router.use('/sentences', sentence_write); // 성공
 
 router.use('/signup', signup);
 

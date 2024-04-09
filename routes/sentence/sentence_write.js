@@ -44,7 +44,7 @@ router.post('/', async (req, res) => { // 원래 : /sentences
     const query = `
 
         INSERT INTO sentences(userno, title, author, sentence)
-        VALUES($1, $2, $3, $4) // 원래는 3개만 
+        VALUES($1, $2, $3, $4)
     `;
 
     try {
