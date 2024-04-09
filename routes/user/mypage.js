@@ -1,6 +1,6 @@
 const express = require('express');
 const pg = require('pg');
-const dbconfig = require('../../dbconfig.json');
+const dbconfig = require('../../config/dbconfig.json');
 
 const router = express.Router();
 

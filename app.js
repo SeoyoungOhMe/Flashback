@@ -5,7 +5,7 @@ const port = 3000
 var bodyParser = require('body-parser')
 const pg = require('pg')  // import pg from 'pg' 와 동일 (ES6 모듈 -> CommonJS 모듈 사용)
 var session = require('express-session')
-const dbconfig = require('../../dbconfig.json')
+const dbconfig = require('./config/dbconfig.json')
 
 const db = new pg.Client({
     user: dbconfig.user,

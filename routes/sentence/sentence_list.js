@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pg = require('pg');
-const dbconfig = require('../../dbconfig.json');
+const dbconfig = require('../../config/dbconfig.json');
 
 // 데이터베이스 연결 설정
 const db = new pg.Client({

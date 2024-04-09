@@ -1,7 +1,7 @@
 const express = require('express');
 const pg = require('pg');
 const session = require('express-session');
-const dbconfig = require('../../dbconfig.json');
+const dbconfig = require('../../config/dbconfig.json');
 
 const router = express.Router();
 

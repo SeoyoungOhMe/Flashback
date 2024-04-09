@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pg = require('pg');
 const session = require('express-session'); // 세션 모듈 불러오기
-const dbconfig = require('../../dbconfig.json');
+const dbconfig = require('../../config/dbconfig.json');
 
 const router = express.Router();
 const saltRounds = 10;
