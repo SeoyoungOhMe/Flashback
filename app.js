@@ -5,13 +5,14 @@ const port = 3000
 var bodyParser = require('body-parser')
 const pg = require('pg')  // import pg from 'pg' 와 동일 (ES6 모듈 -> CommonJS 모듈 사용)
 var session = require('express-session')
+const dbconfig = require('../../dbconfig.json')
 
 const db = new pg.Client({
-    user: "postgres",
-    host: "database-1.cb8gk26msac4.ap-northeast-2.rds.amazonaws.com",
-    database: "postgres",
-    password: "flashback",
-    port: 5432,
+    user: dbconfig.user,
+    host: dbconfig.host,
+    database: dbconfig.database,
+    password: dbconfig.password,
+    port: dbconfig.port,
 })
   
 db.connect();
@@ -23,52 +24,17 @@ app.use(bodyParser.urlencoded({ extended: false })) // bodyparser 사용을 위�
 
 app.use(express.static(__dirname + '/public')) // 정적 파일 제공
 
-// app.use(session({ secret: 'osy', cookie: { maxAge: 60000 }, resave : true, saveUninitialized : true }))
+var router = require('./router/index');
 
-// app.use((req, res, next) => {
+app.use(router);
 
-//     res.locals.user_id="";
-//     res.locals.name="";
+// // 라우팅 
+// app.get('/', (req, res) => {
 
-//     if(req.session.member){
-//         res.locals.user_id = req.session.member.user_id
-//         res.locals.name = req.session.member.name
-//     }
+//     // console.log(req.session.member);
 
-//     next()
+//     res.render('index')  // ./views/index.ejs
 // })
-
-
-// 라우팅 
-app.get('/', (req, res) => {
-
-    // console.log(req.session.member);
-
-    res.render('index')  // ./views/index.ejs
-})
-
-
-
-app.post('/add-sentence', async (req, res) => {
-    // 클라이언트로부터 받은 데이터 예시
-    const { userno, title, author, sentence } = req.body;
-
-    // PostgreSQL 쿼리를 사용해 sentences 테이블에 데이터 추가
-    const query = `
-        INSERT INTO sentences(userNo, title, author, sentence)
-        VALUES($1, $2, $3, $4)
-    `;
-
-    try {
-        await db.query(query, [userno, title, author, sentence]);
-        res.send("문장이 성공적으로 추가되었습니다.");
-    } catch (err) {
-        console.error(err);
-        res.send("문장 추가에 실패했습니다.");
-    }
-});
-
-
 
 
 app.listen(port, () => {
