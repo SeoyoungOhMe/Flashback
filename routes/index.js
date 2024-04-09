@@ -51,8 +51,8 @@ router.use('/sticker/list', sticker_list);
 
 //router.use('/user/mypage', mypage);
 router.use('/users', mypage);
-router.use('/users/:userId/password', re_pw);
-router.use('/users/:userId', user_delete);
+router.use('/users', re_pw);
+router.use('/users', user_delete);
 
 
 module.exports = router;
