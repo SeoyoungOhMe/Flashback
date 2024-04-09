@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-// 로그아웃 라우트
-router.post('/logout', (req, res) => {
+// 로그아웃 라우트 /logout
+router.post('/', (req, res) => {
     // 세션 제거
     req.session.destroy(err => {
         if (err) {

@@ -23,7 +23,7 @@ router.use(session({
 }));
 
 // DELETE /users/:userId 경로에 대한 처리
-router.delete('/users/:userId', async (req, res) => {
+router.delete('/', async (req, res) => {
   const userId = req.params.userId;
 
   try {

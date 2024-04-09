@@ -26,8 +26,8 @@ router.use(session({
   cookie: { maxAge: 3 * 60 * 60 * 1000 } // 세션의 만료 시간을 3시간으로 설정
 }));
 
-// Login route
-router.post('/login', async (req, res) => {
+// Login route: /login
+router.post('/', async (req, res) => {
   const { id, password } = req.body;
 
   try {

@@ -15,7 +15,7 @@ const db = new pg.Client({
 db.connect();
 
 // 사용자 정보 가져오기 GET /users경로에 대한 처리
-router.get('/users', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     // user session이 존재하는지 확인 -> 로그인이 안 된 경우
     if (!req.session.user) {

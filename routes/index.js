@@ -49,9 +49,10 @@ router.use('/signup', signup);
 router.use('/sticker/get', sticker_get);
 router.use('/sticker/list', sticker_list);
 
-router.use('/user/mypage', mypage);
-router.use('/user/re_pw', re_pw);
-router.use('/user/delete', user_delete);
+//router.use('/user/mypage', mypage);
+router.use('/users', mypage);
+router.use('/users/:userId/password', re_pw);
+router.use('/users/:userId', user_delete);
 
 
 module.exports = router;

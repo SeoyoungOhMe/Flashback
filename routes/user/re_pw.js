@@ -17,7 +17,7 @@ const db = new pg.Client({
 db.connect();
 
 // 비밀번호 변경 PUT /users/:userId/password 경로에 대한 처리
-router.put('/users/:userId/password', async (req, res) => {
+router.put('/', async (req, res) => {
   const userId = req.params.userId;
   const { currentPassword, newPassword } = req.body;
 

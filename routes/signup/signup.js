@@ -17,8 +17,8 @@ const db = new pg.Client({
   });
   db.connect();
 
-//회원가입
-router.post('/signup', async(req, res) => {
+//회원가입 /signup
+router.post('/', async(req, res) => {
     const { nickname, id, password } = req.body;
 
     //nickname, id, passowrd 3개가 중 하나라도 입력하지 않은 경우
