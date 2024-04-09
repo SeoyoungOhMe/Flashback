@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const pg = require('pg');
+const dbconfig = require('../../dbconfig.json');
 
 // 데이터베이스 연결 설정
 const db = new pg.Client({
-    user: "postgres",
-    host: "database-1.cb8gk26msac4.ap-northeast-2.rds.amazonaws.com",
-    database: "postgres",
-    password: "flashback",
-    port: 5432,
+    user: dbconfig.user,
+  host: dbconfig.host,
+  database: dbconfig.database,
+  password: dbconfig.password,
+  port: dbconfig.port,
 });
 db.connect();
 
