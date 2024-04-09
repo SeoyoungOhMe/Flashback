@@ -6,6 +6,7 @@ var bodyParser = require('body-parser')
 const pg = require('pg')  // import pg from 'pg' 와 동일 (ES6 모듈 -> CommonJS 모듈 사용)
 var session = require('express-session')
 const dbconfig = require('./config/dbconfig.json')
+const bcrypt = require('bcrypt');
 
 const db = new pg.Client({
     user: dbconfig.user,
@@ -24,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false })) // bodyparser 사용을 위�
 
 app.use(express.static(__dirname + '/public')) // 정적 파일 제공
 
-var router = require('./router/index');
+var router = require('./routes/index');
 
 app.use(router);
 

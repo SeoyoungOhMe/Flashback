@@ -1,29 +1,29 @@
 var express = require('express');
 var app = express();
 var router = express.Router();
+const bcrypt = require('bcrypt');
 
+var chat_delete = require('./chat/chat_delete.js')
+var chat_get = require('./chat/chat_get.js')
+var chat_send = require('./chat/chat_send.js')
 
-var chat_delete = require('./routes/chat/chat_delete.js')
-var chat_get = require('./routes/chat/chat_get.js')
-var chat_send = require('./routes/chat/chat_send.js')
+var login = require('./login/login.js')
 
-var login = require('./routes/login/login.js')
+var logout = require('./logout/logout.js')
 
-var logout = require('./routes/logout/logout.js')
+var sentence_delete = require('./sentence/sentence_delete.js')
+var sentence_list = require('./sentence/sentence_list.js')
+var sentence_read = require('./sentence/sentence_read.js')
+var sentence_write = require('./sentence/sentence_write.js')
 
-var sentence_delete = require('./routes/sentence/sentence_delete.js')
-var sentence_list = require('./routes/sentence/sentence_list.js')
-var sentence_read = require('./routes/sentence/sentence_read.js')
-var sentence_write = require('./routes/sentence/sentence_write.js')
+var signup = require('./signup/signup.js')
 
-var signup = require('./routes/signup/signup.js')
+var sticker_get = require('./sticker_image/sticker_get.js')
+var sticker_list = require('./sticker_image/sticker_list.js')
 
-var sticker_get = require('./routes/sticker_image/sticker_get.js')
-var sticker_list = require('./routes/sticker_image/sticker_list.js')
-
-var mypage = require('./routes/user/mypage.js')
-var re_pw = require('./routes/user/re_pw.js')
-var user_delete = require('./routes/user/user_delete.js')
+var mypage = require('./user/mypage.js')
+var re_pw = require('./user/re_pw.js')
+var user_delete = require('./user/user_delete.js')
 
 
 // 라우트 연결
