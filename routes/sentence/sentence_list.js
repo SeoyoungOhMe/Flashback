@@ -16,13 +16,26 @@ db.connect();
 // GET /sentences 경로에 대한 처리
 router.get('/', async (req, res) => { // 원래 : /sentences
     // PostgreSQL 쿼리를 사용하여 모든 문장의 목록을 가져옴
+
+    // 요청 헤더에서 userNo를 추출
+    const userNo = req.headers.userNo; // 'userNo' 헤더를 통해 사용자 번호를 받음
+
+    // 사용자 번호가 없으면 에러 반환
+    if (!userNo) {
+        return res.status(400).json({
+            success: false,
+            message: "사용자 번호가 제공되지 않았습니다."
+        });
+    }
+
     const query = `
         SELECT title, author, sentence
         FROM sentences
+        WHERE userNo = $1
     `;
 
     try {
-        const result = await db.query(query);
+        const result = await db.query(query, [userNo]);
 
         if (result.rows.length > 0) {
             // 문장 목록을 성공적으로 가져온 경우
