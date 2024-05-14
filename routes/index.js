@@ -4,8 +4,9 @@ var router = express.Router();
 const bcrypt = require('bcrypt');
 
 var chat_delete = require('./chat/chat_delete.js')
-var chat_get = require('./chat/chat_get.js')
-var chat_send = require('./chat/chat_send.js')
+var ques_make = require('./chat/ques_make.js')
+var ques_send = require('./chat/ques_send.js')
+var ans_save = require('./chat/ans_save.js')
 
 var login = require('./login/login.js')
 
@@ -28,8 +29,10 @@ var user_delete = require('./user/user_delete.js')
 
 // 라우트 연결
 router.use('/chat', chat_delete); 
-router.use('/chat', chat_get); // /chat/get
-router.use('/chat', chat_send); // /chat/send
+router.use('/chat', ques_make); // /chat/get
+router.use('/chat', ques_send); // /chat/send
+
+router.use('/ans', ans_save);
 
 router.use('/login', login);
 

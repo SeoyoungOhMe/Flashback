@@ -13,6 +13,10 @@ const db = new pg.Client({
 });
 db.connect();
 
+// 사용자 데이터를 저장할 메모리 변수
+global.userBookData = null;
+
+
 // POST /sentences 경로에 대한 처리
 router.post('/', async (req, res) => { // 원래 : /sentences
     // const { title, author, sentence } = req.body;
@@ -39,6 +43,8 @@ router.post('/', async (req, res) => { // 원래 : /sentences
             message: "선호 문장 입력이 필요합니다"
         });
     }
+
+    global.userBookData = { title, author, sentence };
 
     // PostgreSQL 쿼리를 사용해 sentences 테이블에 데이터 추가
     const query = `
