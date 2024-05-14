@@ -2,6 +2,18 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const OpenAI = require("openai")
+const pg = require('pg');
+const dbconfig = require('../../config/dbconfig.json');
+
+// 데이터베이스 연결 설정
+const db = new pg.Client({
+    user: dbconfig.user,
+    host: dbconfig.host,
+    database: dbconfig.database,
+    password: dbconfig.password,
+    port: dbconfig.port,
+});
+db.connect();
 
 const openai = new OpenAI({
     apiKey:process.env.OPENAI_KEY_SECRET
@@ -13,26 +25,46 @@ global.currentIndex = 0;
 // POST /api/chat/question 경로에 대한 처리
 router.post('/', async (req, res) => {
 
-    //const {title, author, context} = req.body;
+    const {sentenceno} = req.body;
 
     // 간단히 실패 상황을 시뮬레이션하기 위해 조건을 만들어봅시다.
-    if (!global.userBookData) {
+    if (!sentenceno) {
         return res.status(400).json({
             success: false,
-            message: "질문을 받기 위한 제목과 내용이 필요합니다."
+            message: "sentenceno 값이 필요합니다."
         });
     }
-    
-    // const generatedQuestion = "이 문장이 당신에게 어떤 의미인가요?";
-    const userPrompt = `${global.userBookData.author} 작가의 책인 ${global.userBookData.title}의 문장 중 하나인 ${global.userBookData.sentence}를 내가 좋아해. 
-    내가 이 문장을 좋아하는 이유를 알고싶어. 좋아하는 이유를 생각해 볼 수 있는 질문 10개를 생성해줘. 
-    예를 들어, "이 문장이 당신에게 어떤 감정적 반응을 일으키나요?",
-    "이 문장이 당신의 개인적인 경험과 어떻게 연관되어 있나요?",
-    "이 문장이 당신에게 어떤 추억이나 사람을 떠올리게 하나요?",
-    "이 문장이 당신의 생각이나 태도에 어떤 영향을 미쳤나요?" 
-    이런 예시와 같은 질문들을 만들어줘 `;
 
+    // sentences 테이블에서 sentenceno에 해당하는 데이터 가져오기
+    const query = `
+        SELECT title, author, sentence
+        FROM sentences
+        WHERE sentenceno = $1;
+    `;
+    
     try {
+
+        const result = await db.query(query, [sentenceno]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "해당 sentenceno의 데이터를 찾을 수 없습니다."
+            });
+        }
+
+        const { title, author, sentence } = result.rows[0];
+
+        const userPrompt = `${author} 작가의 책인 ${title}의 문장 중 하나인 ${sentence}를 내가 좋아해. 
+        내가 이 문장을 좋아하는 이유를 알고싶어. 좋아하는 이유를 생각해 볼 수 있는 질문 10개를 생성해줘. 
+        예를 들어, "이 문장이 당신에게 어떤 감정적 반응을 일으키나요?",
+        "이 문장이 당신의 개인적인 경험과 어떻게 연관되어 있나요?"
+        이런 예시처럼 심리학적(개인적 동기와 욕구, 정서적 반응) 요인, 
+        문화사회적 요인, 
+        내용이나 형식적 요인(서사구조와 스토리텔링, 미학적 요소), 
+        인지적 요인(인지적 도전과 자극, 상징적 의미와 해석), 
+        기술적 요인(혁신적 요인)을 다양하게 고려해서 질문을 만들어줘.`;
+
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
             messages: [{ "role": "user", "content": userPrompt }],

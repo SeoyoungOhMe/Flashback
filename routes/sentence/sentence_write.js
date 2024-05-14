@@ -13,8 +13,8 @@ const db = new pg.Client({
 });
 db.connect();
 
-// 사용자 데이터를 저장할 메모리 변수
-global.userBookData = null;
+// // 사용자 데이터를 저장할 메모리 변수
+// global.userBookData = null;
 
 
 // POST /sentences 경로에 대한 처리
@@ -44,20 +44,25 @@ router.post('/', async (req, res) => { // 원래 : /sentences
         });
     }
 
-    global.userBookData = { title, author, sentence };
+    // global.userBookData = { title, author, sentence };
 
     // PostgreSQL 쿼리를 사용해 sentences 테이블에 데이터 추가
     const query = `
 
         INSERT INTO sentences(userno, title, author, sentence)
         VALUES($1, $2, $3, $4)
+        RETURNING sentenceno
     `;
 
     try {
-        await db.query(query, [userno, title, author, sentence]);
+        const result = await db.query(query, [userno, title, author, sentence]);
+        const sentenceno = result.rows[0].sentenceno; // 삽입된 행의 sentenceno를 얻음
+
         res.status(200).json({
             success: true,
-            message: "문장 등록에 성공했습니다"
+            message: "문장 등록에 성공했습니다",
+            sentenceno: sentenceno // sentenceno를 응답에 포함시킴
+            // sentence 내용도 넘겨주기 => 필요 없다!
         });
     } catch (err) {
         console.error(err);
