@@ -28,7 +28,7 @@ router.get('/:sentence_id/preferences', async (req, res) => { // 원래 : /sente
     const query = `
         SELECT reason
         FROM preferences
-        WHERE sentenceNo = $1
+        WHERE sentenceno = $1
     `;
 
     try {

@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
       }
       
       // GuserNo를 포함해서 반환하는 access token 생성
-      const accessToken = jwt.sign({ userNo: user.userNo }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+      const accessToken = jwt.sign({ userno: user.userno }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
 
       // 사용자 정보 session에 저장
       req.session.user = user;

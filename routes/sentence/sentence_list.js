@@ -29,9 +29,9 @@ router.get('/', async (req, res) => { // 원래 : /sentences
     }
 
     const query = `
-        SELECT title, author, sentence
+        SELECT title, author, sentence, sentenceno
         FROM sentences
-        WHERE userNo = $1
+        WHERE userno = $1
     `;
 
     try {
