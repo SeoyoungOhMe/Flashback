@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // DELETE /api/chat/session/{session_id} 경로에 대한 처리
-router.delete('/api/chat/session/:session_id', (req, res) => {
+router.delete('/delete/:session_id', (req, res) => {
     const sessionId = req.params.session_id;
 
     // 간단히 실패 상황을 시뮬레이션하기 위해 조건을 만들어봅시다.

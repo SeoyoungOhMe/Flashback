@@ -27,9 +27,9 @@ var user_delete = require('./user/user_delete.js')
 
 
 // 라우트 연결
-router.use('/chat/delete', chat_delete);
-router.use('/chat/get', chat_get);
-router.use('/chat/send', chat_send);
+router.use('/chat', chat_delete); 
+router.use('/chat', chat_get); // /chat/get
+router.use('/chat', chat_send); // /chat/send
 
 router.use('/login', login);
 

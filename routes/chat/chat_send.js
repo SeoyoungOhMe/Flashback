@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // POST /api/chat/respond 경로에 대한 처리
-router.post('/api/chat/respond', (req, res) => {
+router.post('/', (req, res) => {
     const { message } = req.body;
 
     // 간단히 실패 상황을 시뮬레이션하기 위해 조건을 만들어봅시다.
