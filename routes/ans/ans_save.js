@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-global.userAnswers = {};
+global.userAnswers = null;
 
 router.get('/', (req, res) => {
     const { sentenceno, answer } = req.body;
@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
         return res.status(400).json({ success: false, message: 'Answer is required.' });
     }
 
-    global.userAnswers.push(answer);
+    global.userAnswers = answer;
     res.status(200).json({ success: true, message: 'Answer saved successfully.' });
 });
 

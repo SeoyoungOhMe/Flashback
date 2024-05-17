@@ -26,7 +26,6 @@ var mypage = require('./user/mypage.js')
 var re_pw = require('./user/re_pw.js')
 var user_delete = require('./user/user_delete.js')
 
-var summary_get = require('./summary/summary_get.js')
 var summary_send = require('./summary/summary_send.js')
 
 var ans_save = require('./ans/ans_save.js')
@@ -65,7 +64,6 @@ router.use('/users', user_delete);
 router.use('/ans', ans_save)
 router.use('/ans', ans_send)
 
-router.use('/AI', summary_get)
 router.use('/summary', summary_send)
 
 module.exports = router;
