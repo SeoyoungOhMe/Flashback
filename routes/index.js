@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 var chat_delete = require('./chat/chat_delete.js')
 var ques_make = require('./chat/ques_make.js')
 var ques_send = require('./chat/ques_send.js')
-var ans_save = require('./chat/ans_save.js')
+var ans_save = require('./ans/ans_save.js')
 
 var login = require('./login/login.js')
 
@@ -26,6 +26,11 @@ var mypage = require('./user/mypage.js')
 var re_pw = require('./user/re_pw.js')
 var user_delete = require('./user/user_delete.js')
 
+var summary_get = require('./summary/summary_get.js')
+var summary_send = require('./summary/summary_send.js')
+
+var ans_save = require('./ans/ans_save.js')
+var ans_send = require('./ans/ans_send.js')
 
 // 라우트 연결
 router.use('/chat', chat_delete); 
@@ -57,5 +62,10 @@ router.use('/users', mypage);
 router.use('/users', re_pw);
 router.use('/users', user_delete);
 
+router.use('/ans', ans_save)
+router.use('/ans', ans_send)
+
+router.use('/AI', summary_get)
+router.use('/summary', summary_send)
 
 module.exports = router;

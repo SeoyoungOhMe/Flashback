@@ -44,15 +44,6 @@ var router = require('./routes/index');
 
 app.use(router);
 
-// // 라우팅 
-// app.get('/', (req, res) => {
-
-//     // console.log(req.session.member);
-
-//     res.render('index')  // ./views/index.ejs
-// })
-
-
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })

@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const axios = require('axios');
+
 
 // GET /stickers/{sticker_id} 경로에 대한 처리
 router.get('/stickers/:sticker_id', (req, res) => {

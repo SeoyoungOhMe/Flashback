@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-global.userAnswers =  global.userAnswers || [];
+global.userAnswers = {};
 
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
     const { sentenceno, answer } = req.body;
 
     if (!answer) {
