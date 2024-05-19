@@ -26,10 +26,7 @@ var mypage = require('./user/mypage.js')
 var re_pw = require('./user/re_pw.js')
 var user_delete = require('./user/user_delete.js')
 
-var summary_send = require('./summary/summary_send.js')
-
-var ans_save = require('./ans/ans_save.js')
-var ans_send = require('./ans/ans_send.js')
+var ans_combine = require('./ans/ans_combine.js')
 
 // 라우트 연결
 router.use('/chat', chat_delete); 
@@ -61,9 +58,6 @@ router.use('/users', mypage);
 router.use('/users', re_pw);
 router.use('/users', user_delete);
 
-router.use('/save', ans_save)
-router.use('/ans', ans_send)
-
-router.use('/summary', summary_send)
+router.use('/combine', ans_combine)
 
 module.exports = router;
