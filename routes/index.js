@@ -61,7 +61,7 @@ router.use('/users', mypage);
 router.use('/users', re_pw);
 router.use('/users', user_delete);
 
-router.use('/ans', ans_save)
+router.use('/save', ans_save)
 router.use('/ans', ans_send)
 
 router.use('/summary', summary_send)

@@ -3,7 +3,7 @@ const router = express.Router();
 
 global.userAnswers = null;
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
     const { sentenceno, answer } = req.body;
 
     if (!answer) {
