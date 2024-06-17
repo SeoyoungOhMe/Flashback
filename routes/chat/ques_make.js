@@ -5,7 +5,6 @@ const OpenAI = require("openai")
 const pg = require('pg');
 const dbconfig = require('../../config/dbconfig.json');
 
-// 데이터베이스 연결 설정
 const db = new pg.Client({
     user: dbconfig.user,
     host: dbconfig.host,
@@ -27,7 +26,6 @@ router.post('/', async (req, res) => {
 
     const {sentenceno} = req.body;
 
-    // 간단히 실패 상황을 시뮬레이션하기 위해 조건을 만들어봅시다.
     if (!sentenceno) {
         return res.status(400).json({
             success: false,
@@ -35,7 +33,6 @@ router.post('/', async (req, res) => {
         });
     }
 
-    // sentences 테이블에서 sentenceno에 해당하는 데이터 가져오기
     const query = `
         SELECT title, author, sentence
         FROM sentences

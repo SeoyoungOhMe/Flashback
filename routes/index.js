@@ -26,29 +26,23 @@ var user_delete = require('./user/user_delete.js')
 
 var ans_combine = require('./ans/ans_combine.js')
 
-// 라우트 연결
 router.use('/chat', chat_delete); 
-router.use('/chat', ques_make); // /chat/get
-router.use('/chat', ques_send); // /chat/send
+router.use('/chat', ques_make); 
+router.use('/chat', ques_send); 
 
 router.use('/login', login);
 
 router.use('/logout', logout);
 
-// router.use('/sentence/delete', sentence_delete);
-router.use('/sentences', sentence_delete); // 성공
-// router.use('/sentence/list', sentence_list);
-router.use('/sentences', sentence_list); // 성공
-// router.use('/sentence/read', sentence_read);
+router.use('/sentences', sentence_delete); 
+router.use('/sentences', sentence_list); 
 router.use('/sentences/:sentence_id/preferences', sentence_read); 
-// router.use('/sentence/write', sentence_write);
-router.use('/sentences', sentence_write); // 성공
+router.use('/sentences', sentence_write); 
 
 router.use('/signup', signup);
 
-router.use('/sticker/list', sticker_list);
+router.use('/sticker', sticker_list);
 
-//router.use('/user/mypage', mypage);
 router.use('/users', mypage);
 router.use('/users', re_pw);
 router.use('/users', user_delete);

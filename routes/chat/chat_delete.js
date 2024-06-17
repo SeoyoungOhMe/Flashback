@@ -5,7 +5,6 @@ const router = express.Router();
 router.delete('/delete/:session_id', (req, res) => {
     const sessionId = req.params.session_id;
 
-    // 간단히 실패 상황을 시뮬레이션하기 위해 조건을 만들어봅시다.
     if (!sessionId) {
         return res.status(400).json({
             success: false,

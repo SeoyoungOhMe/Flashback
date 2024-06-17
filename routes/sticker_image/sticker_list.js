@@ -1,26 +1,37 @@
 const express = require('express');
 const router = express.Router();
 
-// GET /stickers 경로에 대한 처리
-router.get('/stickers', (req, res) => {
+const pg = require('pg');
+const dbconfig = require('../../config/dbconfig.json');
 
+const db = new pg.Client({
+    user: dbconfig.user,
+    host: dbconfig.host,
+    database: dbconfig.database,
+    password: dbconfig.password,
+    port: dbconfig.port,
+  });
+  db.connect();
 
-    const stickerData = "0x89504E470D0A1A0A..."; // 이진 데이터 형식의 스티커
+router.post('/', async (req, res) => {
+    const { userno } = req.body;
 
-    if (!stickerData) {
-        return res.status(400).json({
-            success: false,
-            message: "스티커 목록을 가져오는 데 실패했습니다."
-        });
+    if (!userno) {
+        return res.status(400).json({ success: false, message: 'User number is required.' });
     }
 
-    res.status(200).json({
-        success: true,
-        message: "스티커 목록을 가져오는 데 성공했습니다.",
-        data: {
-            sticker: stickerData
-        }
-    });
+    try {
+        // 사용자의 스티커 목록을 데이터베이스에서 가져오기
+        const queryText = 'SELECT * FROM stickers WHERE sentenceno IN (SELECT sentenceno FROM sentences WHERE userno = $1)';
+        const dbResponse = await db.query(queryText, [userno]);
+
+        // 스티커 목록 반환
+        const stickerList = dbResponse.rows.map(row => row.sticker);
+        res.status(200).json({ success: true, stickers: stickerList });
+    } catch (error) {
+        console.error('Error fetching user stickers:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 module.exports = router;
