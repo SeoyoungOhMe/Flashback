@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt');
 var chat_delete = require('./chat/chat_delete.js')
 var ques_make = require('./chat/ques_make.js')
 var ques_send = require('./chat/ques_send.js')
-var ans_save = require('./ans/ans_save.js')
 
 var login = require('./login/login.js')
 
@@ -19,7 +18,6 @@ var sentence_write = require('./sentence/sentence_write.js')
 
 var signup = require('./signup/signup.js')
 
-var sticker_get = require('./sticker_image/sticker_get.js')
 var sticker_list = require('./sticker_image/sticker_list.js')
 
 var mypage = require('./user/mypage.js')
@@ -32,8 +30,6 @@ var ans_combine = require('./ans/ans_combine.js')
 router.use('/chat', chat_delete); 
 router.use('/chat', ques_make); // /chat/get
 router.use('/chat', ques_send); // /chat/send
-
-router.use('/ans', ans_save);
 
 router.use('/login', login);
 
@@ -50,7 +46,6 @@ router.use('/sentences', sentence_write); // 성공
 
 router.use('/signup', signup);
 
-router.use('/sticker/get', sticker_get);
 router.use('/sticker/list', sticker_list);
 
 //router.use('/user/mypage', mypage);
