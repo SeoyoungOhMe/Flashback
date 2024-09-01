@@ -83,7 +83,7 @@ git clone https://github.com/SeoyoungOhMe/Flashback.git
 ```
 - 의존성 모듈 설치
 ```
-npm install express ejs body-parser pg express-session bcypt jsonwebtoken
+npm install express ejs body-parser pg express-session bcrypt jsonwebtoken
 ```
 - 시작 
 npm start로 시작!
