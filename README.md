@@ -1,10 +1,6 @@
 # Flashback
 
 ![Project Title](public/stylesheets/images/project-title.png)
-<div align="center">
-<!-- <img width="329" alt="image" src="https://user-images.githubusercontent.com/50205887/207568862-cdc9e2c0-b03c-43ff-bf46-3ba79a110d0c.png"> -->
-
-</div>
 
 > **이화여대 사이버보안학과 졸업프로젝트 진주선영조** <br/> 
 **개발기간 : 2023.9.2 ~ 2024.6.28**
@@ -30,7 +26,7 @@
 - 마지막 단계에서는 정의된 선호 이유를 워드 클라우드를 통해 시각화 하여 사용자에게 제공합니다.
 
 <div align="center">
-<img width="329" alt="image" src="public/stylesheets/images/servicelogic.png">
+<img width="700" alt="image" src="public/stylesheets/images/servicelogic.png">
 
 </div>
 
@@ -52,7 +48,7 @@
 ## Stacks 🐈
 
 <div align="center">
-<img width="329" alt="image" src="public/stylesheets/images/stack.png">
+<img width="700" alt="image" src="public/stylesheets/images/stack.png">
 
 </div>
 
