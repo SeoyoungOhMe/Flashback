@@ -7,9 +7,9 @@
 
 
 ## Development Team 👥
+- 배윤주 : 프론트엔드
 - 오서영 : 백엔드
 - 배유선 : 백엔드
-- 배윤주 : 프론트엔드
 - 최유진 : AI
 
 ## Project Introduction 📁
